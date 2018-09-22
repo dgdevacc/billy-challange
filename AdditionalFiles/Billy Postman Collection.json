@@ -1,0 +1,646 @@
+{
+	"info": {
+		"_postman_id": "2369577c-40e0-4fd3-9663-da74caddebe6",
+		"name": "Billy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "Create new item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Pen",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "pen1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/items",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an item",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/items/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"items",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all items",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/items",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an item",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/items/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "Create new purchase",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "itemId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/purchases",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"purchases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a purchase",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/purchases/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"purchases",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all purchase",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/purchases",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"purchases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a purchase",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/purchases/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"purchases",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sale",
+			"item": [
+				{
+					"name": "Create new sale",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "itemId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "150",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "15",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/sales",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a sale",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/sales/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sales",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all sales",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/sales",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a sale",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Item1",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "item1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/sales/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sales",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "Get item stock quantity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "itemId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/reports/getItemStockQuantity",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports",
+								"getItemStockQuantity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get item stock value",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "itemId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/reports/getItemStockValue",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports",
+								"getItemStockValue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get sale cost",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "itemId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/reports/getSaleCost/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports",
+								"getSaleCost",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get item sales cost",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "itemId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/reports/getItemSalesCost",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports",
+								"getItemSalesCost"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

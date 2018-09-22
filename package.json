@@ -1,0 +1,42 @@
+{
+  "name": "billy-coding-challenge",
+  "version": "1.0.0",
+  "description": "RESTful API for Billy Coding challenge",
+  "author": "David Gamote",
+  "license": "ISC",
+  "engine": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "start": "SET NODE_ENV=local&& node ./bin/api-server",
+    "test": "SET NODE_ENV=testing&& mocha ./test/beforeAll.tests.js ./test/app/ ./test/afterAll.tests.js",
+    "migration:migrate": "SET NODE_ENV=local&& sequelize db:migrate --config ./api/lib/db/config/config.js",
+    "migration:undo": "SET NODE_ENV=local&& sequelize db:migrate:undo --config ./api/lib/db/config/config.js",
+    "seeder:seed": "SET NODE_ENV=local&& sequelize db:seed --seed item purchase sale"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "morgan": "^1.9.1",
+    "pg": "^7.4.3",
+    "randomatic": "^3.1.0",
+    "request": "^2.88.0",
+    "sequelize": "^4.38.1",
+    "sequelize-cli": "^3.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.18.4"
+  }
+}
