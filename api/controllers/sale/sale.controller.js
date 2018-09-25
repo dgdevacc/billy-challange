@@ -57,6 +57,7 @@ saleController.delete = saleId => Sale.destroy({ where: { id: saleId } }).then((
 
 /**
  * Process inventory
+ * First In First Out
  * @param {number} saleId
  */
 
@@ -73,39 +74,46 @@ saleController.processInventory = async (saleId, itemId, desiredQuantity) => {
   // Take the first stock list
   const inventory = await Inventory.findOne({ where: { itemId } });
 
-  // If we got enough q
   if (desiredQuantity < inventory.quantity) {
     await inventory.update({ quantity: inventory.quantity - desiredQuantity });
+
     await SaleEntry.create({
       itemId,
       purchaseId: inventory.purchaseId,
       quantity: desiredQuantity,
       costPrice: inventory.costPrice,
+      totalCostPrice: desiredQuantity * inventory.costPrice,
       saleId,
     }).catch(err => err);
+
     return;
   }
 
   if (Number(desiredQuantity) === Number(inventory.quantity)) {
-    await inventory.destroy();
+    await inventory.destroy(); // delete inventory batch
+
     await SaleEntry.create({
       itemId,
       purchaseId: inventory.purchaseId,
       quantity: desiredQuantity,
       costPrice: inventory.costPrice,
+      totalCostPrice: desiredQuantity * inventory.costPrice,
       saleId,
     }).catch(err => err);
+
     return;
   }
 
   const newDesierQuantity = desiredQuantity - inventory.quantity;
 
-  await inventory.destroy();
+  await inventory.destroy(); // delete inventory batch
+
   await SaleEntry.create({
     itemId,
     purchaseId: inventory.purchaseId,
     quantity: inventory.quantity,
     costPrice: inventory.costPrice,
+    totalCostPrice: inventory.quantity * inventory.costPrice,
     saleId,
   }).catch(err => err);
 

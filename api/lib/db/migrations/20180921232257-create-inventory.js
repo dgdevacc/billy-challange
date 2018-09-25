@@ -27,12 +27,12 @@ module.exports = {
       },
     },
 
-    costPrice: {
+    quantity: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
 
-    quantity: {
+    costPrice: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },

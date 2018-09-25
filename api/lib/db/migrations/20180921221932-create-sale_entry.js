@@ -33,7 +33,12 @@ module.exports = {
     },
 
     costPrice: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DOUBLE,
+      allowNull: false,
+    },
+
+    totalCostPrice: {
+      type: Sequelize.DOUBLE,
       allowNull: false,
     },
 

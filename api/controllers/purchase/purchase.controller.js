@@ -14,8 +14,11 @@ purchaseController.create = async (data) => {
   const filteredData = _.pick(data, [
     'itemId',
     'quantity',
-    'price',
+    'costPrice',
   ]);
+
+  // Calculate total cost price
+  filteredData.totalCostPrice = filteredData.quantity * filteredData.costPrice;
 
   const purchase = await Purchase.create(filteredData).catch((err) => {
     if (err.name === 'SequelizeValidationError') {

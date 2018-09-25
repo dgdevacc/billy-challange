@@ -13,21 +13,26 @@ module.exports = {
     const purchase1 = await Purchase.create({
       itemId: item1.id,
       quantity: 200,
-      price: 10,
+      costPrice: 10,
+      totalCostPrice: 200 * 100,
       createdAt: '2016-01-01 12:00:00 +00:00',
       updatedAt: '2016-01-01 12:00:00 +00:00',
     });
+
     const purchase2 = await Purchase.create({
       itemId: item1.id,
       quantity: 250,
-      price: 15,
+      costPrice: 15,
+      totalCostPrice: 250 * 15,
       createdAt: '2016-01-05 12:00:00 +00:00',
       updatedAt: '2016-01-05 12:00:00 +00:00',
     });
+
     const purchase3 = await Purchase.create({
       itemId: item1.id,
       quantity: 150,
-      price: 12.5,
+      costPrice: 12.5,
+      totalCostPrice: 150 * 12.5,
       createdAt: '2016-01-10 12:00:00 +00:00',
       updatedAt: '2016-01-10 12:00:00 +00:00',
     });
@@ -36,22 +41,28 @@ module.exports = {
     await Inventory.create({
       itemId: item1.id,
       purchaseId: purchase1.id,
-      costPrice: purchase1.price,
       quantity: purchase1.quantity,
+      costPrice: purchase1.costPrice,
+      createdAt: '2016-01-01 12:00:00 +00:00',
+      updatedAt: '2016-01-01 12:00:00 +00:00',
     });
 
     await Inventory.create({
       itemId: item1.id,
       purchaseId: purchase2.id,
-      costPrice: purchase2.price,
       quantity: purchase2.quantity,
+      costPrice: purchase2.costPrice,
+      createdAt: '2016-01-05 12:00:00 +00:00',
+      updatedAt: '2016-01-05 12:00:00 +00:00',
     });
 
     await Inventory.create({
       itemId: item1.id,
       purchaseId: purchase3.id,
-      costPrice: purchase3.price,
       quantity: purchase3.quantity,
+      costPrice: purchase3.costPrice,
+      createdAt: '2016-01-10 12:00:00 +00:00',
+      updatedAt: '2016-01-10 12:00:00 +00:00',
     });
   },
 

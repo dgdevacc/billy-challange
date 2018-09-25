@@ -34,6 +34,7 @@ module.exports = {
       purchaseId: inventory1.purchaseId,
       quantity: 50,
       costPrice: inventory1.costPrice,
+      totalCostPrice: 50 * inventory1.costPrice,
       saleId: sale1.id,
       createdAt: '2016-01-03 12:00:00 +00:00',
       updatedAt: '2016-01-03 12:00:00 +00:00',
@@ -55,8 +56,9 @@ module.exports = {
     await SaleEntry.create({
       itemId: item1.id,
       purchaseId: inventory1.purchaseId,
-      quantity: 75,
+      quantity: 150,
       costPrice: inventory1.costPrice,
+      totalCostPrice: 150 * inventory1.costPrice,
       saleId: sale2.id,
       createdAt: '2016-01-08 12:00:00 +00:00',
       updatedAt: '2016-01-08 12:00:00 +00:00',
@@ -69,12 +71,13 @@ module.exports = {
       purchaseId: inventory2.purchaseId,
       quantity: 75,
       costPrice: inventory2.costPrice,
+      totalCostPrice: 75 * inventory2.costPrice,
       saleId: sale2.id,
       createdAt: '2016-01-08 12:00:00 +00:00',
       updatedAt: '2016-01-08 12:00:00 +00:00',
     });
 
-    await inventory2.update({ quantity: 75 }); // 150 - 75
+    await inventory2.update({ quantity: 175 }); // 250 - 75
 
 
     // Create sale 3
@@ -92,12 +95,13 @@ module.exports = {
       purchaseId: inventory2.purchaseId,
       quantity: 50,
       costPrice: inventory2.costPrice,
+      totalCostPrice: 50 * inventory2.costPrice,
       saleId: sale3.id,
       createdAt: '2016-01-11 12:00:00 +00:00',
       updatedAt: '2016-01-11 12:00:00 +00:00',
     });
 
-    await inventory2.update({ quantity: 25 }); // 75 - 50
+    await inventory2.update({ quantity: 125 }); // 175 - 50
   },
 
   down: queryInterface => queryInterface.bulkDelete('sale', null, {}),

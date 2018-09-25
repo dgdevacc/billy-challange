@@ -1,54 +1,55 @@
-const _ = require('lodash');
-
-const { sequelize } = require('./../../lib/db');
 const {
-  Inventory, SaleEntry, Sale, Item,
+  SaleEntry, Purchase,
 } = require('./../../lib/db').models;
-const HttpError = require('./../../lib/utils/http-error');
 
 const itemController = global.getController('item');
+const saleController = global.getController('sale');
+
 const reportController = {};
 
 /**
  * Get stock quantity for an item
+ * @param {*} data contains itemId, startingFrom, upTo
  */
 
 reportController.getItemStockQuantity = async (data) => {
   await itemController.findById(data.itemId); // check if item exits
 
-  const totalStock = await Inventory.sum('quantity', { where: { itemId: data.itemId } });
-  if (!totalStock) return 0;
+  // Query options
+  const whereObj = { itemId: data.itemId };
+  const createdAtObj = {};
 
-  return Number(totalStock);
+  if (data.startingFrom) createdAtObj.gt = new Date(data.startingFrom);
+  if (data.upTo) createdAtObj.lt = new Date(data.upTo);
+
+  if (Object.keys(createdAtObj).length > 0) whereObj.createdAt = createdAtObj;
+
+  const purchasesAfter = await Purchase.sum('quantity', { where: whereObj }) || 0;
+  const salesAfter = await SaleEntry.sum('quantity', { where: whereObj }) || 0;
+
+  return purchasesAfter - salesAfter;
 };
 
 /**
  * Get stock value for an item
- * @param {*} data contains itemId
+ * @param {*} data contains itemId, startingFrom, upTo
  */
 reportController.getItemStockValue = async (data) => {
   await itemController.findById(data.itemId); // check if item exits
 
-  const stock = await Item.find({
-    where: { id: data.itemId },
-    group: ['Item.id'],
+  // Query options
+  const whereObj = { itemId: data.itemId };
+  const createdAtObj = {};
 
-    attributes: [
-      [sequelize.literal('SUM(inventories."costPrice" * inventories.quantity )'), 'value'],
-    ],
+  if (data.startingFrom) createdAtObj.gt = new Date(data.startingFrom);
+  if (data.upTo) createdAtObj.lt = new Date(data.upTo);
 
-    include: [{
-      model: Inventory,
-      as: 'inventories',
-      attributes: [],
-    }],
+  if (Object.keys(createdAtObj).length > 0) whereObj.createdAt = createdAtObj;
 
-    raw: true,
-  });
+  const purchasesAfter = await Purchase.sum('totalCostPrice', { where: whereObj }) || 0;
+  const salesAfter = await SaleEntry.sum('totalCostPrice', { where: whereObj }) || 0;
 
-  if (!stock || !stock.value) return 0;
-
-  return Number(stock.value);
+  return purchasesAfter - salesAfter;
 };
 
 /**
@@ -56,52 +57,28 @@ reportController.getItemStockValue = async (data) => {
  * @param {Number} saleId
  */
 reportController.getSaleCost = async (saleId) => {
-  const sale = await Sale.findOne({
-    where: { id: saleId },
-    group: ['Sale.id'],
+  await saleController.findById(saleId); // check if sale exits
 
-    attributes: [
-      [sequelize.literal('SUM("saleEntries"."costPrice" * "saleEntries".quantity )'), 'totalCostValue'],
-    ],
-
-    include: [{
-      model: SaleEntry,
-      as: 'saleEntries',
-      attributes: [],
-    }],
-
-    raw: true,
-  });
-
-  if (!sale) throw new HttpError('Not Found', 'Sale not found', 404);
-
-  return Number(sale.totalCostValue);
+  return SaleEntry.sum('totalCostPrice', { where: { saleId } }) || 0;
 };
 
 /**
  * Get sales cost for an item
- * @param {*} data contains itemId
+ * @param {*} data contains itemId, startingFrom, upTo
  */
 reportController.getItemSalesCost = async (data) => {
   await itemController.findById(data.itemId); // check if item exits
 
-  const salesCost = await Sale.findAll({
-    where: { itemId: data.itemId },
-    group: ['Sale.id'],
-    attributes: [
-      [sequelize.literal('SUM("saleEntries"."costPrice" * "saleEntries".quantity )'), 'costValue'],
-    ],
+  // Query options
+  const whereObj = { itemId: data.itemId };
+  const createdAtObj = {};
 
-    include: [{
-      model: SaleEntry,
-      as: 'saleEntries',
-      attributes: [],
-    }],
+  if (data.startingFrom) createdAtObj.gt = new Date(data.startingFrom);
+  if (data.upTo) createdAtObj.lt = new Date(data.upTo);
 
-    raw: true,
-  }).then(sales => _.sumBy(sales, sale => Number(sale.costValue)));
+  if (Object.keys(createdAtObj).length > 0) whereObj.createdAt = createdAtObj;
 
-  return Number(salesCost);
+  return SaleEntry.sum('totalCostPrice', { where: whereObj }) || 0;
 };
 
 module.exports = reportController;

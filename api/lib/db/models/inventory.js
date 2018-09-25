@@ -25,12 +25,12 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
 
-    costPrice: {
+    quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
 
-    quantity: {
+    costPrice: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

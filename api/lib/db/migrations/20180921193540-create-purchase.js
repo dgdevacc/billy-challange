@@ -22,7 +22,12 @@ module.exports = {
       allowNull: false,
     },
 
-    price: {
+    costPrice: {
+      type: Sequelize.DOUBLE,
+      allowNull: false,
+    },
+
+    totalCostPrice: {
       type: Sequelize.DOUBLE,
       allowNull: false,
     },

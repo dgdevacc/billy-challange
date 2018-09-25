@@ -48,7 +48,8 @@ const seedData = async () => {
   data.purchases.purchase1 = await Purchase.create({
     itemId: data.items.item1.id,
     quantity: 200,
-    price: 10,
+    costPrice: 10,
+    totalCostPrice: 200 * 10,
     createdAt: '2016-01-01 12:00:00 +00:00',
     updatedAt: '2016-01-01 12:00:00 +00:00',
   });
@@ -56,7 +57,8 @@ const seedData = async () => {
   data.purchases.purchase2 = await Purchase.create({
     itemId: data.items.item1.id,
     quantity: 250,
-    price: 15,
+    costPrice: 15,
+    totalCostPrice: 250 * 15,
     createdAt: '2016-01-05 12:00:00 +00:00',
     updatedAt: '2016-01-05 12:00:00 +00:00',
   });
@@ -64,7 +66,8 @@ const seedData = async () => {
   data.purchases.purchase3 = await Purchase.create({
     itemId: data.items.item1.id,
     quantity: 250,
-    price: 15,
+    costPrice: 15,
+    totalCostPrice: 250 * 15,
     createdAt: '2016-01-05 12:00:00 +00:00',
     updatedAt: '2016-01-05 12:00:00 +00:00',
   });
@@ -72,7 +75,8 @@ const seedData = async () => {
   data.purchases.purchase4 = await Purchase.create({
     itemId: data.items.item3.id,
     quantity: 6,
-    price: 3600,
+    costPrice: 3600,
+    totalCostPrice: 6 * 3600,
     createdAt: '2016-01-05 12:00:00 +00:00',
     updatedAt: '2016-01-05 12:00:00 +00:00',
   });
@@ -81,28 +85,34 @@ const seedData = async () => {
   data.inventories.inventory1 = await Inventory.create({
     itemId: data.items.item1.id,
     purchaseId: data.purchases.purchase1.id,
-    costPrice: data.purchases.purchase1.price,
+    costPrice: data.purchases.purchase1.costPrice,
     quantity: data.purchases.purchase1.quantity,
+    createdAt: '2016-01-01 12:00:00 +00:00',
+    updatedAt: '2016-01-01 12:00:00 +00:00',
   });
 
   data.inventories.inventory2 = await Inventory.create({
     itemId: data.items.item1.id,
     purchaseId: data.purchases.purchase2.id,
-    costPrice: data.purchases.purchase2.price,
+    costPrice: data.purchases.purchase2.costPrice,
     quantity: data.purchases.purchase2.quantity,
+    createdAt: '2016-01-05 12:00:00 +00:00',
+    updatedAt: '2016-01-05 12:00:00 +00:00',
   });
 
   data.inventories.inventory3 = await Inventory.create({
     itemId: data.items.item1.id,
     purchaseId: data.purchases.purchase3.id,
-    costPrice: data.purchases.purchase3.price,
+    costPrice: data.purchases.purchase3.costPrice,
     quantity: data.purchases.purchase3.quantity,
+    createdAt: '2016-01-10 12:00:00 +00:00',
+    updatedAt: '2016-01-10 12:00:00 +00:00',
   });
 
   data.inventories.inventory4 = await Inventory.create({
     itemId: data.items.item3.id,
     purchaseId: data.purchases.purchase4.id,
-    costPrice: data.purchases.purchase4.price,
+    costPrice: data.purchases.purchase4.costPrice,
     quantity: data.purchases.purchase4.quantity,
   });
 
@@ -121,6 +131,7 @@ const seedData = async () => {
     purchaseId: data.inventories.inventory1.purchaseId,
     quantity: 50,
     costPrice: data.inventories.inventory1.costPrice,
+    totalCostPrice: 50 * data.inventories.inventory1.costPrice,
     saleId: data.sales.sale1.id,
     createdAt: '2016-01-03 12:00:00 +00:00',
     updatedAt: '2016-01-03 12:00:00 +00:00',
@@ -144,6 +155,7 @@ const seedData = async () => {
     purchaseId: data.inventories.inventory1.purchaseId,
     quantity: 75,
     costPrice: data.inventories.inventory1.costPrice,
+    totalCostPrice: 75 * data.inventories.inventory1.costPrice,
     saleId: data.sales.sale2.id,
     createdAt: '2016-01-08 12:00:00 +00:00',
     updatedAt: '2016-01-08 12:00:00 +00:00',
@@ -157,6 +169,7 @@ const seedData = async () => {
     purchaseId: data.inventories.inventory2.purchaseId,
     quantity: 75,
     costPrice: data.inventories.inventory2.costPrice,
+    totalCostPrice: 75 * data.inventories.inventory2.costPrice,
     saleId: data.sales.sale2.id,
     createdAt: '2016-01-08 12:00:00 +00:00',
     updatedAt: '2016-01-08 12:00:00 +00:00',
@@ -180,6 +193,7 @@ const seedData = async () => {
     purchaseId: data.inventories.inventory2.purchaseId,
     quantity: 50,
     costPrice: data.inventories.inventory2.costPrice,
+    totalCostPrice: 50 * data.inventories.inventory2.costPrice,
     saleId: data.sales.sale3.id,
     createdAt: '2016-01-11 12:00:00 +00:00',
     updatedAt: '2016-01-11 12:00:00 +00:00',
@@ -203,6 +217,7 @@ const seedData = async () => {
     purchaseId: data.inventories.inventory4.purchaseId,
     quantity: 1,
     costPrice: data.inventories.inventory4.costPrice,
+    totalCostPrice: 1 * data.inventories.inventory4.costPrice,
     saleId: data.sales.sale4.id,
     createdAt: '2018-09-22 08:12:00 +00:00',
     updatedAt: '2018-09-22 08:12:00 +00:00',

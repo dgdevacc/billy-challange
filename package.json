@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "SET NODE_ENV=local&& node ./bin/api-server",
+    "start-nodemon": "SET NODE_ENV=local&& nodemon ./bin/api-server",
     "test": "SET NODE_ENV=testing&& mocha ./test/beforeAll.tests.js ./test/app/ ./test/afterAll.tests.js",
     "migration:migrate": "SET NODE_ENV=local&& sequelize db:migrate --config ./api/lib/db/config/config.js",
     "migration:undo": "SET NODE_ENV=local&& sequelize db:migrate:undo --config ./api/lib/db/config/config.js",
